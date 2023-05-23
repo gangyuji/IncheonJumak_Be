@@ -8,5 +8,5 @@ from . import views
 urlpatterns = [
     path('', views.SignUp.as_view(), name='signup'),
     path('login/', views.CustomTokenObtainPairView.as_view(), name='token_obtain_pair'),
-    path('/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
+    path('refresh/', TokenRefreshView.as_view(), name='token_refresh'),
 ]
