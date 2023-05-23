@@ -14,8 +14,13 @@ class ReviewView(APIView):
         serializer = ReviewListSerializer(reviews, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)
     def post(self, request):
+        # if not request.user.is_authenticated:
+        #     return Response({"message":"로그인 해주세요"}, 401)
+        
         serializer = ReviewCreateSerializer(data=request.data)
         if serializer.is_valid():
+            # print("테스트", request.user)
+            
             serializer.save(user=request.user)
             return Response(serializer.data, status=status.HTTP_200_OK)
         else:
